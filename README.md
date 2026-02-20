@@ -23,3 +23,7 @@ Once the ClawdHub publishing pipeline is ready, it should be publishable as-is.
 ## License
 
 MIT (see `LICENSE`).
+
+## Publishing
+
+See `PUBLISHING.md`.
