@@ -1,0 +1,15 @@
+{
+  "name": "openclaw-agent-compute-skill",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Public skill that exposes compute.* tools for OpenClaw by calling a private Compute Gateway over HTTPS.",
+  "type": "module",
+  "scripts": {
+    "lint": "node -c src/index.js && node -c examples/exec.js",
+    "example:exec": "node examples/exec.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "undici": "^6.21.0"
+  }
+}
