@@ -1,12 +1,12 @@
 {
-  "name": "openclaw-agent-compute-skill",
+  "name": "openclaw-agent-compute-skill-repo",
   "version": "0.0.1",
-  "private": true,
-  "description": "Public skill that exposes compute.* tools for OpenClaw by calling a private Compute Gateway over HTTPS.",
+  "private": false,
   "type": "module",
+  "description": "Clawdbot skill: openclaw-agent-compute (public HTTP client + starter kit).",
   "scripts": {
-    "lint": "node -c src/index.js && node -c examples/exec.js",
-    "example:exec": "node examples/exec.js"
+    "example:exec": "node skills/openclaw-agent-compute/scripts/example_exec.js",
+    "lint": "node -c skills/openclaw-agent-compute/scripts/client.js && node -c skills/openclaw-agent-compute/scripts/example_exec.js"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
