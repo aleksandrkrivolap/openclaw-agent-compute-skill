@@ -15,6 +15,11 @@ npm i
 npm run example:exec
 ```
 
+## ClawdHub publishing
+
+This repo is structured as a standard Clawdbot skill under `skills/openclaw-agent-compute/`.
+Once the ClawdHub publishing pipeline is ready, it should be publishable as-is.
+
 ## License
 
 MIT (see `LICENSE`).
