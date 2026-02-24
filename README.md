@@ -18,7 +18,16 @@ npm run example:exec
 ## ClawdHub publishing
 
 This repo is structured as a standard Clawdbot skill under `skills/openclaw-agent-compute/`.
-Once the ClawdHub publishing pipeline is ready, it should be publishable as-is.
+
+Publish **the skill folder** (not the repo root):
+
+```bash
+clawdhub publish ./skills/openclaw-agent-compute \
+  --slug openclaw-agent-compute \
+  --name "OpenClaw Agent Compute" \
+  --version 0.1.0 \
+  --tags latest
+```
 
 ## License
 
