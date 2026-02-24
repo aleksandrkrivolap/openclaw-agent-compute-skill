@@ -9,22 +9,23 @@
 - [ ] Run `npm run lint`
 
 ## Packaging
-- [ ] Confirm required manifest/metadata file name + fields for ClawdHub
-- [ ] Add manifest once confirmed
+- [x] Confirmed: ClawdHub does **not** require a separate manifest file in the repo.
+- [ ] Ensure the **skill folder** (`./skills/openclaw-agent-compute`) is self-contained (has SKILL.md + any runtime deps / package.json if needed).
 
 ## Release
 - [ ] Tag `v0.1.0`
 - [ ] Create GitHub Release with changelog
-- [ ] Publish to ClawdHub
+- [ ] Publish to ClawdHub:
+  ```bash
+  clawdhub publish ./skills/openclaw-agent-compute \
+    --slug openclaw-agent-compute \
+    --name "OpenClaw Agent Compute" \
+    --version 0.1.0 \
+    --tags latest
+  ```
 
-## Manifest (TBD)
+## Manifest
 
-ClawdHub manifest spec is currently unknown.
+No separate manifest file is required.
 
-Working assumptions / candidates:
-- ClawdHub may infer name/description from `skills/openclaw-agent-compute/SKILL.md` frontmatter.
-- If an explicit manifest is required, likely candidates are something like `clawdhub.json`, `clawdhub.yml`, or `skill.json` at repo root.
-
-Action:
-- Locate official docs/schema for the manifest (filename + required fields).
-- Add the manifest and cut release `v0.1.0`.
+ClawdHub publishing is driven by the CLI (`clawdhub publish ...`). Skill metadata should live in `skills/openclaw-agent-compute/SKILL.md` frontmatter + README.
