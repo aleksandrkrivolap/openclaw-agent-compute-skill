@@ -6,7 +6,8 @@
 - [ ] Ensure `skills/openclaw-agent-compute/SKILL.md` frontmatter is correct (name, description)
 - [ ] Ensure repo contains a LICENSE
 - [ ] Ensure `.gitignore` excludes `.env` and `node_modules/`
-- [ ] Run `npm run lint`
+- [ ] Run `npm run lint` (GitHub Actions workflow: `lint`)
+- [ ] (Recommended) Add `package-lock.json` and switch CI back to `npm ci` for reproducible installs
 
 ## Packaging
 - [x] Confirmed: ClawdHub does **not** require a separate manifest file in the repo.

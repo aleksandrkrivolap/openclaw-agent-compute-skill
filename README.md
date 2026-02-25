@@ -1,5 +1,7 @@
 # openclaw-agent-compute (Skill)
 
+[![lint](https://github.com/aleksandrkrivolap/openclaw-agent-compute-skill/actions/workflows/lint.yml/badge.svg)](https://github.com/aleksandrkrivolap/openclaw-agent-compute-skill/actions/workflows/lint.yml)
+
 Public Clawdbot/OpenClaw skill that exposes `compute.*` tools by calling a **private** Compute Gateway over **HTTPS**.
 
 - Skill folder: `skills/openclaw-agent-compute/`
