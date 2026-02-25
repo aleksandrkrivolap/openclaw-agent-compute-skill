@@ -2,7 +2,7 @@ name: lint
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
           cache: 'npm'
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Lint
         run: npm run -s lint
