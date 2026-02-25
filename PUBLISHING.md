@@ -14,8 +14,13 @@
 - [ ] Ensure the **skill folder** (`./skills/openclaw-agent-compute`) is self-contained (has SKILL.md + any runtime deps / package.json if needed).
 
 ## Release
-- [ ] Tag `v0.1.0`
-- [ ] Create GitHub Release with changelog
+- [x] Tag `v0.1.0`
+- [x] Create GitHub Release with changelog
+- [ ] Install + login to ClawdHub:
+  ```bash
+  npm i -g clawdhub
+  clawdhub login
+  ```
 - [ ] Publish to ClawdHub:
   ```bash
   clawdhub publish ./skills/openclaw-agent-compute \

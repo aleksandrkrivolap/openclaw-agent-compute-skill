@@ -21,6 +21,13 @@ npm run example:exec
 
 This repo is structured as a standard Clawdbot skill under `skills/openclaw-agent-compute/`.
 
+Install the ClawdHub CLI:
+
+```bash
+npm i -g clawdhub
+clawdhub login
+```
+
 Publish **the skill folder** (not the repo root):
 
 ```bash
