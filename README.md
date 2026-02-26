@@ -9,7 +9,10 @@ Public Clawdbot/OpenClaw skill that exposes `compute.*` tools by calling a **pri
 
 ## Quickstart
 
+Prereqs: Node.js + npm.
+
 ```bash
+# from repo root
 cp skills/openclaw-agent-compute/.env.example .env
 # edit .env: MCP_COMPUTE_URL + MCP_COMPUTE_API_KEY
 
