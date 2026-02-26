@@ -22,13 +22,18 @@
   clawdhub login
   ```
 - [ ] Publish to ClawdHub:
-  ```bash
-  clawdhub publish ./skills/openclaw-agent-compute \
-    --slug openclaw-agent-compute \
-    --name "OpenClaw Agent Compute" \
-    --version 0.1.0 \
-    --tags latest
-  ```
+  - One-liner:
+    ```bash
+    clawdhub publish ./skills/openclaw-agent-compute \
+      --slug openclaw-agent-compute \
+      --name "OpenClaw Agent Compute" \
+      --version 0.1.0 \
+      --tags latest
+    ```
+  - Or use the helper script (reads version from `skills/openclaw-agent-compute/package.json`):
+    ```bash
+    ./scripts/publish_clawdhub.sh
+    ```
 
 ## Manifest
 
