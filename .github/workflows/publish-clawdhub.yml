@@ -1,0 +1,38 @@
+name: publish-clawdhub
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Install clawdhub CLI
+        run: npm i -g clawdhub
+
+      - name: Login
+        env:
+          CLAWDHUB_TOKEN: ${{ secrets.CLAWDHUB_TOKEN }}
+        run: |
+          test -n "$CLAWDHUB_TOKEN" || (echo "Missing CLAWDHUB_TOKEN secret" && exit 1)
+          clawdhub login --token "$CLAWDHUB_TOKEN" --no-browser
+
+      - name: Publish skill
+        run: |
+          clawdhub publish ./skills/openclaw-agent-compute \
+            --slug openclaw-agent-compute \
+            --name "OpenClaw Agent Compute" \
+            --version 0.1.0 \
+            --tags latest
