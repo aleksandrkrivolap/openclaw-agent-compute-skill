@@ -24,6 +24,14 @@ npm run lint
 npm run example:exec
 ```
 
+## Artifacts (planned)
+
+The private gateway contract also includes artifact upload/download/list endpoints. The client exports helper functions:
+
+- `computeArtifactsList({ session_id })`
+- `computeArtifactPut({ session_id, path, bytes })`
+- `computeArtifactGet({ session_id, path })`
+
 ## Repository
 
 https://github.com/aleksandrkrivolap/openclaw-agent-compute-skill
