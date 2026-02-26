@@ -33,8 +33,16 @@ jobs:
 
       - name: Publish skill
         run: |
-          clawdhub publish ./skills/openclaw-agent-compute \
-            --slug openclaw-agent-compute \
-            --name "OpenClaw Agent Compute" \
-            --version 0.1.0 \
-            --tags latest
+          set -euo pipefail
+          for i in 1 2 3; do
+            echo "Publish attempt $i/3"
+            clawdhub publish ./skills/openclaw-agent-compute \
+              --slug openclaw-agent-compute \
+              --name "OpenClaw Agent Compute" \
+              --version 0.1.0 \
+              --tags latest && exit 0
+            echo "Publish failed (attempt $i). Retrying in 10s..."
+            sleep 10
+          done
+          echo "Publish failed after 3 attempts" >&2
+          exit 1
