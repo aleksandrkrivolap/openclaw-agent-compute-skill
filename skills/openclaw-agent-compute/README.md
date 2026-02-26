@@ -31,6 +31,7 @@ The private gateway contract also includes artifact upload/download/list endpoin
 - `computeArtifactsList({ session_id })`
 - `computeArtifactPut({ session_id, path, bytes })`
 - `computeArtifactGet({ session_id, path })`
+- `computeArtifactDelete({ session_id, path })`
 
 ## Repository
 

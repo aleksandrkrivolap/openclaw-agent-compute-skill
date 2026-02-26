@@ -89,6 +89,11 @@ async function del(path) {
   return text ? JSON.parse(text) : {};
 }
 
+async function delJson(path) {
+  // alias, for clarity at call sites
+  return del(path);
+}
+
 async function get(path) {
   assertEnv();
   const url = new URL(path, baseUrl);
@@ -134,6 +139,11 @@ export async function computeArtifactPut({ session_id, path, bytes }) {
 export async function computeArtifactGet({ session_id, path }) {
   const encodedPath = encodeURIComponent(path);
   return getOctetStream(`/v1/artifacts/${encodeURIComponent(session_id)}/${encodedPath}`);
+}
+
+export async function computeArtifactDelete({ session_id, path }) {
+  const encodedPath = encodeURIComponent(path);
+  return delJson(`/v1/artifacts/${encodeURIComponent(session_id)}/${encodedPath}`);
 }
 
 export async function computeSessionDestroy({ session_id }) {
