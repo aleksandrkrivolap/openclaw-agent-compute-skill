@@ -20,7 +20,9 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Install clawdhub CLI
-        run: npm i -g clawdhub
+        run: |
+          # Workaround: clawdhub CLI currently expects undici at runtime
+          npm i -g undici clawdhub
 
       - name: Login
         env:
