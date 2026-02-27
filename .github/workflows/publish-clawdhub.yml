@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - name: Install clawdhub CLI
         run: |
@@ -34,12 +35,16 @@ jobs:
       - name: Publish skill
         run: |
           set -euo pipefail
+
+          VERSION=$(node -p "require('./skills/openclaw-agent-compute/package.json').version")
+          echo "Publishing openclaw-agent-compute version: $VERSION"
+
           for i in 1 2 3; do
             echo "Publish attempt $i/3"
             clawdhub publish ./skills/openclaw-agent-compute \
               --slug openclaw-agent-compute \
               --name "OpenClaw Agent Compute" \
-              --version 0.1.0 \
+              --version "$VERSION" \
               --tags latest && exit 0
             echo "Publish failed (attempt $i). Retrying in 10s..."
             sleep 10
