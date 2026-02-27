@@ -25,7 +25,19 @@ print(data["version"])
 PY
 )
 
+need_cmd() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    echo "ERROR: missing required command: $1" >&2
+    return 1
+  fi
+}
+
+need_cmd python3
+need_cmd clawdhub
+
 echo "Publishing openclaw-agent-compute version: $VERSION"
+
+echo "NOTE: This must be run from an environment with Node/npm available (for installing the ClawdHub CLI), and where you are logged in via 'clawdhub login'."
 
 clawdhub publish "$SKILL_DIR" \
   --slug openclaw-agent-compute \

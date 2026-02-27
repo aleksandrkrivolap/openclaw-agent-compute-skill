@@ -6,7 +6,8 @@
 - [ ] Ensure `skills/openclaw-agent-compute/SKILL.md` frontmatter is correct (name, description)
 - [ ] Ensure repo contains a LICENSE
 - [ ] Ensure `.gitignore` excludes `.env` and `node_modules/`
-- [ ] Run `npm run lint` (GitHub Actions workflow: `lint`)
+- [ ] Confirm you are running from a machine/environment with **Node.js + npm** available (required to install the ClawdHub CLI)
+- [ ] Run `npm run lint` (or rely on the GitHub Actions workflow: `lint`)
 - [ ] (Recommended) Add `package-lock.json` and switch CI back to `npm ci` for reproducible installs
 
 ## Packaging
