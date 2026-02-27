@@ -53,4 +53,5 @@ MIT (see `LICENSE`).
 
 ## Publishing
 
-See `PUBLISHING.md`.
+- Checklist: `PUBLISHING.md`
+- Runbook (local + GitHub Actions): `CLAWDHUB_RUNBOOK.md`
