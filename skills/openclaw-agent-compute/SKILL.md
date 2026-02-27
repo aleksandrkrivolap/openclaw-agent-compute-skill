@@ -47,3 +47,8 @@ npm run example:exec
 See `skills/openclaw-agent-compute/starter-kit/`.
 
 It keeps the OpenClaw image overrideable via `OPENCLAW_IMAGE` until an official image/tag is confirmed.
+
+## Publishing
+
+- Checklist: `PUBLISHING.md`
+- Runbook (local publish + GitHub Actions tag-based publish): `CLAWDHUB_RUNBOOK.md`
