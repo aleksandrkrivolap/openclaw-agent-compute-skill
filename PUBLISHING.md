@@ -17,6 +17,11 @@
 ## Release
 - [x] Tag `v0.1.0`
 - [x] Create GitHub Release with changelog
+
+Publishing options:
+- **Local publish** (fastest): see `CLAWDHUB_RUNBOOK.md`.
+- **GitHub Actions** (tag-based): see `CLAWDHUB_RUNBOOK.md` (requires `CLAWDHUB_TOKEN` secret).
+
 - [ ] Install + login to ClawdHub:
   ```bash
   npm i -g clawdhub
