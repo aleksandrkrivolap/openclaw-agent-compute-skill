@@ -41,6 +41,12 @@ clawdhub publish ./skills/openclaw-agent-compute \
   --tags latest
 ```
 
+Or use the helper script (reads the version from `skills/openclaw-agent-compute/package.json`):
+
+```bash
+./scripts/publish_clawdhub.sh
+```
+
 ## License
 
 MIT (see `LICENSE`).
