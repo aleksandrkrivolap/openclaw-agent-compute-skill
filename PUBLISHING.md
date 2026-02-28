@@ -24,7 +24,8 @@ Publishing options:
 
 - [ ] Install + login to ClawdHub:
   ```bash
-  npm i -g clawdhub
+  # Workaround: clawdhub CLI currently expects undici at runtime
+  npm i -g undici clawdhub
   clawdhub login
   ```
 - [ ] Publish to ClawdHub:

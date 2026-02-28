@@ -4,7 +4,8 @@ set -euo pipefail
 # Publish the skill folder to ClawdHub.
 #
 # Prereqs:
-#   npm i -g clawdhub
+#   # Workaround: clawdhub CLI currently expects undici at runtime
+#   npm i -g undici clawdhub
 #   clawdhub login
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
