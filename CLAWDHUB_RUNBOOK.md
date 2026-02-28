@@ -9,11 +9,33 @@ Prereqs:
 - ClawdHub CLI installed + logged in
 
 ```bash
-npm i -g clawdhub
+# Workaround: clawdhub CLI currently expects undici at runtime
+npm i -g undici clawdhub
 clawdhub login
 
 ./scripts/publish_clawdhub.sh
 ```
+
+### Dry-run checklist (before publishing)
+
+1) Sanity-check metadata
+- `skills/openclaw-agent-compute/SKILL.md` frontmatter:
+  - `name: openclaw-agent-compute`
+  - `description: ...`
+- `skills/openclaw-agent-compute/README.md` exists and describes env vars + endpoints.
+- `LICENSE` exists at repo root, and a copy exists inside `skills/openclaw-agent-compute/` (so the published folder is self-contained).
+
+2) Confirm versioning
+- `skills/openclaw-agent-compute/package.json` version matches your intended publish version.
+- Tag to publish via Actions should be `vX.Y.Z` and should match that version.
+
+3) Quick local checks
+- `node -c skills/openclaw-agent-compute/scripts/client.js`
+- `node -c skills/openclaw-agent-compute/scripts/example_exec.js`
+
+4) After publish
+- Copy the ClawdHub listing URL into the Notion card.
+- Mark Status → Done once listing is live.
 
 ## Option B — GitHub Actions publish (tag-based)
 
