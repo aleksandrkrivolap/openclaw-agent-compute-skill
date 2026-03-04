@@ -7,6 +7,22 @@ Public Clawdbot/OpenClaw skill that exposes `compute.*` tools by calling a **pri
 - Skill folder: `skills/openclaw-agent-compute/`
 - Starter kit: `skills/openclaw-agent-compute/starter-kit/`
 
+## Install
+
+### Option A — ClawdHub
+
+```bash
+clawdhub install openclaw-agent-compute
+```
+
+### Option B — from GitHub
+
+```bash
+git clone https://github.com/aleksandrkrivolap/openclaw-agent-compute-skill
+cd openclaw-agent-compute-skill
+npm i
+```
+
 ## Quickstart
 
 Prereqs: Node.js + npm.
