@@ -2,6 +2,22 @@
 
 Public Clawdbot/OpenClaw skill that exposes `compute.*` tools by calling a **private** Compute Gateway over **HTTPS**.
 
+## Install
+
+### Option A — ClawdHub
+
+```bash
+clawdhub install openclaw-agent-compute
+```
+
+### Option B — from GitHub (dev)
+
+```bash
+git clone https://github.com/aleksandrkrivolap/openclaw-agent-compute-skill
+cd openclaw-agent-compute-skill
+npm i
+```
+
 ## Configuration
 
 Copy the example env file and set:
