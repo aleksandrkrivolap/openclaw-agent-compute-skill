@@ -7,6 +7,14 @@ set -euo pipefail
 #   # Workaround: clawdhub CLI currently expects undici at runtime
 #   npm i -g undici clawdhub
 #   clawdhub login
+#
+# Troubleshooting:
+#   If you see: `env: node: No such file or directory`
+#   then your Node binary is not on PATH. Example fix (nvm):
+#     export PATH="$HOME/.nvm/versions/node/v22.22.0/bin:$PATH"
+#
+#   If you don't have npm on PATH but you do have bun, you can install via:
+#     bun add -g undici clawdhub
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 SKILL_DIR="$ROOT_DIR/skills/openclaw-agent-compute"
