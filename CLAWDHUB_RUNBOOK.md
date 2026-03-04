@@ -27,6 +27,8 @@ export PATH="$HOME/.nvm/versions/node/v22.22.0/bin:$PATH"
 clawdhub --cli-version
 ```
 
+Note: the CLI uses `--cli-version` (not `--version`).
+
 ### Dry-run checklist (before publishing)
 
 1) Sanity-check metadata
