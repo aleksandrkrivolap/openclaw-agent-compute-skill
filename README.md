@@ -40,10 +40,13 @@ npm run example:exec
 
 This repo is structured as a standard Clawdbot skill under `skills/openclaw-agent-compute/`.
 
+### Option A — Local publish
+
 Install the ClawdHub CLI:
 
 ```bash
-npm i -g clawdhub
+# Workaround: clawdhub CLI currently expects undici at runtime
+npm i -g undici clawdhub
 clawdhub login
 ```
 
@@ -62,6 +65,18 @@ Or use the helper script (reads the version from `skills/openclaw-agent-compute/
 ```bash
 ./scripts/publish_clawdhub.sh
 ```
+
+### Option B — GitHub Actions (tag-based)
+
+1) Add repo secret: `CLAWDHUB_TOKEN`
+2) Push a tag matching the version, e.g.:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+The workflow `.github/workflows/publish-clawdhub.yml` will publish automatically.
 
 ## License
 
