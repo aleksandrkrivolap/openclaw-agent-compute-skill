@@ -16,6 +16,17 @@ clawdhub login
 ./scripts/publish_clawdhub.sh
 ```
 
+### Troubleshooting: `env: node: No such file or directory`
+
+If `clawdhub` fails with `env: node: No such file or directory`, your `node` binary is not on `PATH`.
+
+Fix by enabling your Node version manager (nvm/volta/asdf), or explicitly prepend a Node bin directory:
+
+```bash
+export PATH="$HOME/.nvm/versions/node/v22.22.0/bin:$PATH"
+clawdhub --cli-version
+```
+
 ### Dry-run checklist (before publishing)
 
 1) Sanity-check metadata
