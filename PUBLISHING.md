@@ -28,6 +28,12 @@ Publishing options:
   npm i -g undici clawdhub
   clawdhub login
   ```
+  - Troubleshooting:
+    - If `clawdhub` fails with `env: node: No such file or directory`, ensure `node` is on `PATH` (nvm/volta/asdf).
+    - If you have **bun** but not npm on PATH, you can install via:
+      ```bash
+      bun add -g undici clawdhub
+      ```
 - [ ] Publish to ClawdHub:
   - One-liner:
     ```bash
