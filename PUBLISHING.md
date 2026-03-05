@@ -17,6 +17,8 @@
 ## Release
 - [x] Tag `v0.1.0`
 - [x] Create GitHub Release with changelog
+- [ ] If republishing an already-published version, **bump** `skills/openclaw-agent-compute/package.json` version first (ClawdHub installs are versioned).
+- [ ] Post-publish verification: install into a clean folder and confirm the installed `SKILL.md` matches the repo (endpoints list, env vars).
 
 Publishing options:
 - **Local publish** (fastest): see `CLAWDHUB_RUNBOOK.md`.
