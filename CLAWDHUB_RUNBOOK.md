@@ -48,7 +48,15 @@ Note: the CLI uses `--cli-version` (not `--version`).
 
 4) After publish
 - Copy the ClawdHub listing URL into the Notion card.
-- Mark Status → Done once listing is live.
+- Verify install in a clean folder:
+  ```bash
+  mkdir -p /tmp/clawdhub-smoke && cd /tmp/clawdhub-smoke
+  clawdhub install openclaw-agent-compute --no-input
+  # or pin a version explicitly:
+  clawdhub install openclaw-agent-compute --version X.Y.Z --no-input
+  ```
+- If you hit `Rate limit exceeded`, back off (30–120s) and retry.
+- Mark Status → Done once listing is live + install is verified.
 
 ## Option B — GitHub Actions publish (tag-based)
 
