@@ -36,6 +36,39 @@ npm i
 npm run example:exec
 ```
 
+## Configuration
+
+This is a **public client** skill. It does *not* run compute itself — it forwards requests to your **private Compute Gateway**.
+
+Required env vars:
+
+- `MCP_COMPUTE_URL` (example: `https://compute.example.com`)
+- `MCP_COMPUTE_API_KEY`
+
+Security notes:
+
+- Treat `MCP_COMPUTE_API_KEY` like a root credential.
+- Run the gateway behind HTTPS and keep it on a private network / allowlisted IPs.
+
+## What you get (tools)
+
+This skill exposes agent-friendly `compute.*` tools (see `skills/openclaw-agent-compute/` for the exact tool schema). The gateway is expected to implement:
+
+- Sessions
+  - `POST /v1/sessions` (create)
+  - `GET /v1/sessions/{session_id}` (status)
+  - `DELETE /v1/sessions/{session_id}` (destroy)
+- Exec
+  - `POST /v1/exec` (run a command)
+  - `GET /v1/usage/{session_id}` (usage/cost)
+- Artifacts
+  - `GET /v1/artifacts/{session_id}` (list)
+  - `PUT /v1/artifacts/{session_id}/{path}` (upload bytes)
+  - `GET /v1/artifacts/{session_id}/{path}` (download bytes)
+  - `DELETE /v1/artifacts/{session_id}/{path}` (delete)
+
+`{path}` must be URL-encoded and may include slashes.
+
 ## ClawdHub publishing
 
 This repo is structured as a standard Clawdbot skill under `skills/openclaw-agent-compute/`.
