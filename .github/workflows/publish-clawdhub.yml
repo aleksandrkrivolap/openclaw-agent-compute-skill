@@ -45,7 +45,9 @@ jobs:
 
           test -n "$CLAWDHUB_TOKEN" || (echo "Missing CLAWDHUB_TOKEN secret" && exit 1)
 
-          REGISTRY="https://clawdhub.com"
+          # Registry currently redirects from clawdhub.com → clawhub.ai (308).
+          # Use the final host directly to avoid a false-positive success.
+          REGISTRY="https://clawhub.ai"
           VERSION=$(node -p "require('./skills/openclaw-agent-compute/package.json').version")
           echo "Publishing openclaw-agent-compute version: $VERSION"
 
@@ -70,7 +72,7 @@ jobs:
           for i in 1 2 3; do
             echo "Publish attempt $i/3"
 
-            curl -fsS -X POST "${REGISTRY}/api/v1/skills" \
+            curl -fsSL -X POST "${REGISTRY}/api/v1/skills" \
               -H "Authorization: Bearer ${CLAWDHUB_TOKEN}" \
               -H "Accept: application/json" \
               -F "payload=$(cat /tmp/payload.json)" \
