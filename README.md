@@ -9,7 +9,9 @@ Public Clawdbot/OpenClaw skill that exposes `compute.*` tools by calling a **pri
 
 ## Install
 
-### Option A — ClawdHub
+### Option A — ClawHub (registry)
+
+Listing: https://clawhub.ai/skills/openclaw-agent-compute
 
 ```bash
 clawdhub install openclaw-agent-compute
