@@ -52,7 +52,11 @@ Security notes:
 
 ## What you get (tools)
 
-This skill exposes agent-friendly `compute.*` tools (see `skills/openclaw-agent-compute/` for the exact tool schema). The gateway is expected to implement:
+This skill exposes agent-friendly `compute.*` tools (see `skills/openclaw-agent-compute/` for the exact tool schema).
+
+Gateway implementers: see `GATEWAY_REFERENCE.md` (artifacts path safety, raw upload notes, suggested smoketests).
+
+The gateway is expected to implement:
 
 - Sessions
   - `POST /v1/sessions` (create)
