@@ -72,14 +72,24 @@ jobs:
           for i in 1 2 3; do
             echo "Publish attempt $i/3"
 
-            curl -fsSL -X POST "${REGISTRY}/api/v1/skills" \
+            set +e
+            out=$(curl -sSL --fail-with-body -X POST "${REGISTRY}/api/v1/skills" \
               -H "Authorization: Bearer ${CLAWDHUB_TOKEN}" \
               -H "Accept: application/json" \
               -F "payload=$(cat /tmp/payload.json)" \
               $(python3 scripts/build_clawdhub_curl_files_args.py "$SKILL_DIR") \
-              && exit 0
+              2>&1)
+            status=$?
+            set -e
 
-            echo "Publish failed (attempt $i). Retrying in 10s..." >&2
+            if [[ $status -eq 0 ]]; then
+              echo "$out"
+              exit 0
+            fi
+
+            echo "Publish failed (attempt $i). Response:" >&2
+            echo "$out" >&2
+            echo "Retrying in 10s..." >&2
             sleep 10
           done
 
