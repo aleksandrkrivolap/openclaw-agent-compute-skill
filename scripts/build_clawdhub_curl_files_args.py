@@ -39,7 +39,20 @@ def main() -> int:
 
         rel = path.relative_to(skill_dir).as_posix()
         abs_path = str(path)
-        print(f"-F files=@{abs_path};filename={rel}")
+        ext = path.suffix.lower()
+        mime = {
+            ".md": "text/markdown",
+            ".yml": "text/yaml",
+            ".yaml": "text/yaml",
+            ".json": "application/json",
+            ".js": "text/javascript",
+            ".ts": "text/typescript",
+            ".env": "text/plain",
+            ".example": "text/plain",
+            "": "text/plain",
+        }.get(ext, "text/plain")
+
+        print(f"-F files=@{abs_path};filename={rel};type={mime}")
 
     return 0
 
