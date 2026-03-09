@@ -46,11 +46,13 @@ install_once() {
     --workdir "$TMP_ROOT" \
     >"$TMP_ROOT/install.log" 2>&1
 
-  echo "INSTALL_OK"
   TMP_ROOT="$TMP_ROOT" python3 - <<'PY'
 import json, os
 from pathlib import Path
 p = Path(os.environ["TMP_ROOT"]) / "skills/openclaw-agent-compute/package.json"
+if not p.exists():
+    raise FileNotFoundError(f"Missing expected installed package.json: {p}")
+print("INSTALL_OK")
 print(json.loads(p.read_text()).get("version"))
 PY
 }
