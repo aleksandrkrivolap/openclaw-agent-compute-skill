@@ -74,19 +74,7 @@ jobs:
               -H "Authorization: Bearer ${CLAWDHUB_TOKEN}" \
               -H "Accept: application/json" \
               -F "payload=$(cat /tmp/payload.json)" \
-              $(find "$SKILL_DIR" -type f \
-                ! -path '*/node_modules/*' \
-                ! -path '*/.git/*' \
-                -print0 | SKILL_DIR="$SKILL_DIR" python3 - <<'PY'
-import os, sys
-raw = sys.stdin.buffer.read().split(b'\0')
-files = [p.decode('utf-8') for p in raw if p]
-skill_dir = os.environ['SKILL_DIR'].rstrip('/')
-for p in files:
-    rel = os.path.relpath(p, skill_dir)
-    print(f"-F files=@{p};filename={rel}")
-PY
-              ) \
+              $(python3 scripts/build_clawdhub_curl_files_args.py "$SKILL_DIR") \
               && exit 0
 
             echo "Publish failed (attempt $i). Retrying in 10s..." >&2
