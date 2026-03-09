@@ -33,23 +33,65 @@ jobs:
           clawdhub login --token "$CLAWDHUB_TOKEN" --no-browser
 
       - name: Publish skill
+        env:
+          CLAWDHUB_TOKEN: ${{ secrets.CLAWDHUB_TOKEN }}
         run: |
           set -euo pipefail
 
+          # NOTE: As of 2026-03, `clawdhub publish` fails in CI with:
+          #   "Publish payload: acceptLicenseTerms: invalid value"
+          # The CLI doesn't currently expose a way to set this field.
+          # Workaround: call the registry API directly and include acceptLicenseTerms=true.
+
+          test -n "$CLAWDHUB_TOKEN" || (echo "Missing CLAWDHUB_TOKEN secret" && exit 1)
+
+          REGISTRY="https://clawdhub.com"
           VERSION=$(node -p "require('./skills/openclaw-agent-compute/package.json').version")
           echo "Publishing openclaw-agent-compute version: $VERSION"
 
+          SKILL_DIR="./skills/openclaw-agent-compute"
+
+          cat > /tmp/payload.json <<EOF
+          {
+            "slug": "openclaw-agent-compute",
+            "displayName": "OpenClaw Agent Compute",
+            "version": "${VERSION}",
+            "changelog": "",
+            "tags": ["latest"],
+            "acceptLicenseTerms": true
+          }
+          EOF
+
+          # Upload all files under the skill folder (excluding node_modules/.git), preserving rel paths.
+          # The API expects multipart/form-data with:
+          # - payload: JSON string
+          # - files: repeated parts with filename=<relPath>
+
           for i in 1 2 3; do
             echo "Publish attempt $i/3"
-            # clawdhub currently prompts for license terms; in CI there's no TTY.
-            # Pipe an explicit "y" to ensure acceptLicenseTerms is set correctly.
-            printf "y\n" | clawdhub publish ./skills/openclaw-agent-compute \
-              --slug openclaw-agent-compute \
-              --name "OpenClaw Agent Compute" \
-              --version "$VERSION" \
-              --tags latest && exit 0
-            echo "Publish failed (attempt $i). Retrying in 10s..."
+
+            curl -fsS -X POST "${REGISTRY}/api/v1/skills" \
+              -H "Authorization: Bearer ${CLAWDHUB_TOKEN}" \
+              -H "Accept: application/json" \
+              -F "payload=$(cat /tmp/payload.json)" \
+              $(find "$SKILL_DIR" -type f \
+                ! -path '*/node_modules/*' \
+                ! -path '*/.git/*' \
+                -print0 | SKILL_DIR="$SKILL_DIR" python3 - <<'PY'
+import os, sys
+raw = sys.stdin.buffer.read().split(b'\0')
+files = [p.decode('utf-8') for p in raw if p]
+skill_dir = os.environ['SKILL_DIR'].rstrip('/')
+for p in files:
+    rel = os.path.relpath(p, skill_dir)
+    print(f"-F files=@{p};filename={rel}")
+PY
+              ) \
+              && exit 0
+
+            echo "Publish failed (attempt $i). Retrying in 10s..." >&2
             sleep 10
           done
+
           echo "Publish failed after 3 attempts" >&2
           exit 1
