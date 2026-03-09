@@ -67,12 +67,14 @@ while true; do
     exit 0
   fi
 
-  if grep -qi "rate limit" "$TMP_ROOT/install.log"; then
+  if grep -qi "rate limit" "$TMP_ROOT/install.log" || \
+     grep -qi "skill not found" "$TMP_ROOT/install.log" || \
+     grep -qi "version not found" "$TMP_ROOT/install.log"; then
     sleep_for=$((SLEEP_BASE_SECONDS * attempt))
-    echo "Rate limited. Sleeping ${sleep_for}s then retrying..." >&2
+    echo "Transient install error (rate limit / not found). Sleeping ${sleep_for}s then retrying..." >&2
     sleep "$sleep_for"
   else
-    echo "Install failed (non-rate-limit). Last 120 lines:" >&2
+    echo "Install failed (non-transient). Last 120 lines:" >&2
     tail -n 120 "$TMP_ROOT/install.log" >&2 || true
     exit 1
   fi
