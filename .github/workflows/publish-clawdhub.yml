@@ -83,3 +83,12 @@ jobs:
 
           echo "Publish failed after 3 attempts" >&2
           exit 1
+
+      - name: Verify install from ClawdHub (smoketest)
+        env:
+          # Make publish propagation/rate-limits less flaky.
+          MAX_ATTEMPTS: "10"
+          SLEEP_BASE_SECONDS: "10"
+        run: |
+          set -euo pipefail
+          ./scripts/verify_clawdhub_install.sh
