@@ -15,7 +15,8 @@
 - [ ] Ensure the **skill folder** (`./skills/openclaw-agent-compute`) is self-contained (has SKILL.md + any runtime deps / package.json if needed).
 
 ## Release
-- [x] Tag `v0.1.0`
+- [x] Tag `v0.1.0` (initial)
+- [ ] Tag `v0.1.7` (current)
 - [x] Create GitHub Release with changelog
 - [ ] If republishing an already-published version, **bump** `skills/openclaw-agent-compute/package.json` version first (ClawdHub installs are versioned).
 - [ ] Post-publish verification: install into a clean folder and confirm the installed `SKILL.md` matches the repo (endpoints list, env vars).
@@ -42,7 +43,7 @@ Publishing options:
     clawdhub publish ./skills/openclaw-agent-compute \
       --slug openclaw-agent-compute \
       --name "OpenClaw Agent Compute" \
-      --version 0.1.0 \
+      --version 0.1.7 \
       --tags latest
     ```
   - Or use the helper script (reads version from `skills/openclaw-agent-compute/package.json`):

@@ -93,7 +93,7 @@ Publish **the skill folder** (not the repo root):
 clawdhub publish ./skills/openclaw-agent-compute \
   --slug openclaw-agent-compute \
   --name "OpenClaw Agent Compute" \
-  --version 0.1.0 \
+  --version 0.1.7 \
   --tags latest
 ```
 
@@ -109,8 +109,8 @@ Or use the helper script (reads the version from `skills/openclaw-agent-compute/
 2) Push a tag matching the version, e.g.:
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.1.7
+git push origin v0.1.7
 ```
 
 The workflow `.github/workflows/publish-clawdhub.yml` will publish automatically.
