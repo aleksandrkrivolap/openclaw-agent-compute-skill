@@ -9,7 +9,7 @@
     "lint": "node -c skills/openclaw-agent-compute/scripts/client.js && node -c skills/openclaw-agent-compute/scripts/example_exec.js"
   },
   "dependencies": {
-    "dotenv": "^16.4.5",
+    "dotenv": "^17.3.1",
     "undici": "^6.21.0"
   }
 }
