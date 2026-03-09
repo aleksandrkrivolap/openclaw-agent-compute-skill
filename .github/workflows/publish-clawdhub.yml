@@ -41,7 +41,9 @@ jobs:
 
           for i in 1 2 3; do
             echo "Publish attempt $i/3"
-            clawdhub publish ./skills/openclaw-agent-compute \
+            # clawdhub currently prompts for license terms; in CI there's no TTY.
+            # Pipe an explicit "y" to ensure acceptLicenseTerms is set correctly.
+            printf "y\n" | clawdhub publish ./skills/openclaw-agent-compute \
               --slug openclaw-agent-compute \
               --name "OpenClaw Agent Compute" \
               --version "$VERSION" \
