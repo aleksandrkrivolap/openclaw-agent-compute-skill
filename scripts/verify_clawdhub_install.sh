@@ -47,10 +47,10 @@ install_once() {
     >"$TMP_ROOT/install.log" 2>&1
 
   echo "INSTALL_OK"
-  python3 - <<'PY'
-import json
+  TMP_ROOT="$TMP_ROOT" python3 - <<'PY'
+import json, os
 from pathlib import Path
-p = Path("$TMP_ROOT/skills/openclaw-agent-compute/package.json")
+p = Path(os.environ["TMP_ROOT"]) / "skills/openclaw-agent-compute/package.json"
 print(json.loads(p.read_text()).get("version"))
 PY
 }
