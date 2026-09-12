@@ -38,6 +38,31 @@ npm i
 npm run example:exec
 ```
 
+## Five-minute artifact demo: CSV → report
+
+For agents and agent builders: a small, deterministic payload that turns a CSV
+into a file an agent can return to its caller. Requires Python 3 (standard library
+only). From a GitHub checkout's repo root:
+
+```bash
+demo_dir=$(mktemp -d)
+python3 examples/csv-report/report.py examples/csv-report/input.csv "$demo_dir/report.md"
+cat "$demo_dir/report.md"
+diff -u examples/csv-report/expected.md "$demo_dir/report.md"
+```
+
+Expected: 4 rows, USD 200.00 total, grouped by category; `diff` exits 0.
+The synthetic input includes a quoted comma and a negative adjustment.
+Invalid amounts fail before writing the output file.
+
+This is a **local payload demo**, not a hosted-compute smoke test. These examples
+live in the GitHub repo, outside the published 0.1.7 skill package. To use the
+payload with a private gateway, upload `report.py` and `input.csv` into a session,
+execute `python3 report.py input.csv report.md` in the directory where that gateway
+mounts session artifacts, then download `report.md`. The runtime needs Python 3;
+the artifact mount directory is gateway-specific. Remote execution is not verified
+by the local command above.
+
 ## Configuration
 
 This is a **public client** skill. It does *not* run compute itself — it forwards requests to your **private Compute Gateway**.
