@@ -6,6 +6,7 @@
   "description": "Clawdbot skill: openclaw-agent-compute (public HTTP client + starter kit).",
   "scripts": {
     "example:exec": "node skills/openclaw-agent-compute/scripts/example_exec.js",
+    "example:csv-report": "bash examples/csv-report/verify.sh",
     "lint": "node -c skills/openclaw-agent-compute/scripts/client.js && node -c skills/openclaw-agent-compute/scripts/example_exec.js"
   },
   "dependencies": {

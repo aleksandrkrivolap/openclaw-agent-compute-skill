@@ -55,6 +55,12 @@ Expected: 4 rows, USD 200.00 total, grouped by category; `diff` exits 0.
 The synthetic input includes a quoted comma and a negative adjustment.
 Invalid amounts fail before writing the output file.
 
+One-command check (golden diff + no-overwrite + invalid-input cases; also runs in CI):
+
+```bash
+npm run example:csv-report   # prints: csv-report demo: PASS
+```
+
 This is a **local payload demo**, not a hosted-compute smoke test. These examples
 live in the GitHub repo, outside the published 0.1.7 skill package. To use the
 payload with a private gateway, upload `report.py` and `input.csv` into a session,

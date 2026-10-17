@@ -18,3 +18,5 @@ jobs:
         run: npm ci
       - name: Lint
         run: npm run -s lint
+      - name: CSV -> report demo
+        run: npm run -s example:csv-report
